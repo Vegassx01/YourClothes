@@ -149,6 +149,21 @@ UI to dark text (body.light class, luminance > .58).
     font/otf 200 len 61.8KB, logos 200). Redeploy: vercel
     deploy --prod --yes (in YourClothes dir). NOTE: new GLB
     additions need redeploy. Custom domain later via dashboard.
+[x] INCIDENT + FIX: initial share check showed "This page
+    doesn't exist" 404 at "/" -> root cause: index.html was
+    MISSING from YourClothes folder on disk at deploy time
+    (folder had bento.html/assets only; also BORELA.ttf +
+    AnOtherVersion.jpg appeared = user moved files around).
+    Recreated index.html from in-context v0.2.5 snapshot
+    (JS node-checked). Also: new-project "Vercel Authentication"
+    SSO protection default made all paths serve a fake 200
+    login page -> disabled via `vercel project protection
+    disable yourclothes12 --sso`. Monster deploy attempts
+    (project yourclothes + aliases) obsoleted. FINAL:
+    project=yourclothes12, protection OFF,
+    https://yourclothes12.vercel.app = v1 (42822B, real title
+    verified), /bento.html = bento (49532B, real title
+    verified), both REAL 200 now.
 [x] v0.2.3: logo = YC monogram Logo.png → Logo_t.png transparent
     + favicon (spotlight-noise bg removed programmatically)
 [x] v0.2.4: motion pass — entrance choreo (pre→ready), product
